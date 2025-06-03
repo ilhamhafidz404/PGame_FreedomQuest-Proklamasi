@@ -14,6 +14,7 @@ public class BasicController : MonoBehaviour
 
     //
     public AudioSource walkSound;
+    public AudioSource runSound;
 
 
     // for animation move
@@ -40,6 +41,31 @@ public class BasicController : MonoBehaviour
         }
     }
 
+    // Handle Run & Walk Speed
+    public float walkSpeed = 4f;
+    public float runSpeed = 7f;
+
+    public float currentSpeed {
+        get {
+            float speed = 0f;
+            if(isRunning && IsMoving){
+                speed = runSpeed;
+            } else if(IsMoving) {
+                speed = walkSpeed;
+            } else {
+                speed = 0f;
+            }
+
+            return speed;
+        }
+    }
+
+
+    // --------------------------------------------------------------------------------------------------------------
+    // METHODS
+    // --------------------------------------------------------------------------------------------------------------
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,9 +78,8 @@ public class BasicController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.linearVelocity = new Vector2(v2.x * 4f, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(v2.x * currentSpeed, rb.linearVelocity.y);
     }
-
 
     // Walk Control
     public void onWalk(InputAction.CallbackContext context)
@@ -82,8 +107,12 @@ public class BasicController : MonoBehaviour
     public void onRunning(InputAction.CallbackContext context){
         if (context.started){
             IsRunning = true;
+            runSound.Play();
+            walkSound.Stop();
         } else if (context.canceled){
             IsRunning = false;
+            runSound.Stop();
         }
     }
+
 }
