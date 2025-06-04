@@ -24,6 +24,7 @@ public class BasicController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     private bool isRunning = false;
     public bool IsRunning {
         get { return isRunning; }
@@ -52,7 +53,9 @@ public class BasicController : MonoBehaviour
         }
     }
 
-    // 
+    // Preparation for Sfx
+    public AudioSource walkSound;
+    public AudioSource runSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -79,14 +82,28 @@ public class BasicController : MonoBehaviour
         if (v2.x != 0) {
             spriteRenderer.flipX = v2.x < 0;
         }
+
+        // Play SFX
+        if(context.started){
+            walkSound.Play();
+        } else if (context.canceled || IsRunning){
+            walkSound.Stop();
+        }
     }
 
     // Listen Input Move + Run
     public void onRunning(InputAction.CallbackContext context){
         if (context.started){
             IsRunning = true;
+
+            //
+            runSound.Play();
+            walkSound.Stop();
         } else if (context.canceled){
             IsRunning = false;
+            
+            //
+            runSound.Stop();
         }
     }
 }
