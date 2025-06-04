@@ -35,8 +35,8 @@ public class BasicController : MonoBehaviour
         }
     }
 
-    public float walkSpeed = 2f;
-    public float runSpeed = 5f;
+    public float walkSpeed = 5f;
+    public float runSpeed = 8f;
 
     public float currentSpeed {
         get {

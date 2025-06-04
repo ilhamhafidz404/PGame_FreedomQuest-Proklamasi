@@ -14,7 +14,7 @@ public class JumpController : MonoBehaviour
     public ContactFilter2D castFilter;
 
     [SerializeField] 
-    private float jumpForce = 3f;
+    private float jumpForce = 5f;
 
     // Preparation for Sfx
     public AudioSource jumpSound;
