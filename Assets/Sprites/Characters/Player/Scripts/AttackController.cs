@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JumpController : MonoBehaviour
+public class AttackController : MonoBehaviour
 {
     // BASIC COMPONENTS
     Rigidbody2D rb;
@@ -13,11 +13,8 @@ public class JumpController : MonoBehaviour
     RaycastHit2D[] groundHits = new RaycastHit2D[5];
     public ContactFilter2D castFilter;
 
-    [SerializeField] 
-    private float jumpForce = 5f;
-
     // Preparation for Sfx
-    public AudioSource jumpSound;
+    public AudioSource attackSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,21 +25,17 @@ public class JumpController : MonoBehaviour
         cc = GetComponent<CapsuleCollider2D>();
     }
 
-    public void onJump(InputAction.CallbackContext context)
-    {
+    public void onAttack(InputAction.CallbackContext context){
         if (context.started) {
-            int hits = cc.Cast(Vector2.down, castFilter, groundHits, 0.1f);
-            if (hits > 0) {
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-                anim.SetTrigger("Jump");
-            }
+            anim.SetTrigger("Attack");
 
             // Play SFX
             if(context.started){
-                jumpSound.Play();
+                attackSound.Play();
             } else if (context.canceled){
-                jumpSound.Stop();
+                attackSound.Stop();
             }
-        }
+        } 
     }
+
 }
