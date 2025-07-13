@@ -52,10 +52,18 @@ public class BasicController : MonoBehaviour
             return speed;
         }
     }
+    
+    // 
+    RaycastHit2D[] groundHits = new RaycastHit2D[5];
+    public ContactFilter2D castFilter;
+
+    [SerializeField] 
+    private float jumpForce = 5f;
 
     // Preparation for Sfx
     public AudioSource walkSound;
     public AudioSource runSound;
+    public AudioSource jumpSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -106,4 +114,70 @@ public class BasicController : MonoBehaviour
             runSound.Stop();
         }
     }
+
+
+    //
+
+    // Tombol tekan ke kiri
+    public void OnMoveLeftDown()
+    {
+        v2 = Vector2.left;
+        IsMoving = true;
+        spriteRenderer.flipX = true;
+        if (!IsRunning) walkSound.Play();
+    }
+
+    // Tombol tekan ke kanan
+    public void OnMoveRightDown()
+    {
+        v2 = Vector2.right;
+        IsMoving = true;
+        spriteRenderer.flipX = false;
+        if (!IsRunning) walkSound.Play();
+    }
+
+    // Tombol lepas (baik kiri maupun kanan)
+    public void OnMoveButtonUp()
+    {
+        v2 = Vector2.zero;
+        IsMoving = false;
+        walkSound.Stop();
+        runSound.Stop();
+    }
+
+    public void OnRunButtonClick()
+    {
+        IsRunning = !IsRunning; // Toggle antara true/false
+
+        // SFX
+        if (IsRunning)
+        {
+            runSound.Play();
+            walkSound.Stop();
+        }
+        else
+        {
+            runSound.Stop();
+            if (IsMoving) walkSound.Play(); // Kembali ke jalan biasa kalau masih bergerak
+        }
+    }
+
+    // Tombol lompat (jika pakai sistem lompat terpisah)
+    public void OnJumpButtonDown()
+    {
+        // Cek apakah grounded menggunakan Cast ke bawah
+        int hits = cc.Cast(Vector2.down, castFilter, groundHits, 0.1f);
+        if (hits > 0)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            anim.SetTrigger("Jump");
+
+            // Mainkan SFX lompat
+            if (jumpSound != null)
+            {
+                jumpSound.Play();
+            }
+        }
+    }
+
 }

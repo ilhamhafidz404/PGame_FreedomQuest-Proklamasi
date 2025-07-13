@@ -24,7 +24,7 @@ public class NarratorController : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("PlayScene");
+                SceneManager.LoadScene("TutorialScene");
             }
         }
     }
