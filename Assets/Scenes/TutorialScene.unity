@@ -3062,7 +3062,6 @@ RectTransform:
   - {fileID: 100034427}
   - {fileID: 931097957}
   - {fileID: 1807871011}
-  - {fileID: 1380330798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -39280,17 +39279,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380330797}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7215636, y: 0.7215636, z: 0.7215636}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 779291303}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 336.23, y: 130.21}
-  m_SizeDelta: {x: 15.2284, y: 7.7937}
+  m_AnchoredPosition: {x: 233.10873, y: 82.703415}
+  m_SizeDelta: {x: 116.7057, y: 13.0186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1380330799
 BoxCollider2D:
@@ -39326,7 +39325,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.63614845, y: -3.0448747}
+  m_Offset: {x: 0.91960907, y: -3.1503315}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -39336,7 +39335,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 15.931627, y: 7.0897503}
+  m_Size: {x: 118.10242, y: 6.545391}
   m_EdgeRadius: 0
 --- !u!114 &1380330800
 MonoBehaviour:
@@ -41863,6 +41862,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1914516046}
+  - {fileID: 1380330798}
   - {fileID: 1931646031}
   - {fileID: 779291303}
   - {fileID: 747242204}
